@@ -209,6 +209,7 @@
                                                     
                                                 @endif
                                             <span class="badge badge-pill badge-primary">{{$data[0]->payer2_status}}</span>
+                                            @else
                                                 
                                             @endif
                                                
