@@ -32,8 +32,8 @@ class transactionController extends Controller
             // case '2': return view('admin.index');
             // break;
 
-            case '3': return view('admin.index');
-            break;
+            // case '3': return view('admin.index');
+            // break;
 
             // case '4': return view('operator.index');
             // break;
@@ -239,6 +239,46 @@ class transactionController extends Controller
 
         return view('operator.invoice', ['data'=> $transactions, 'location'=> $update, 'invoice'=> $t_invoice]);
     }
+
+    public function payer1($id)
+    {
+
+        $updatexrf2 = Transaction::find($id);        
+        $updatexrf2 -> status = 'proceed';
+
+        $updatexrf2->save();
+        // $addinvoice2->save();
+
+        return redirect('/transaction');
+          
+    }
+
+    public function payer2($id)
+    {
+
+        $updatexrf2 = Transaction::find($id);        
+        $updatexrf2 -> status = 'proceed';
+
+        $updatexrf2->save();
+        // $addinvoice2->save();
+
+        return redirect('/transaction');
+          
+    }
+
+    public function payer3($id)
+    {
+
+        $updatexrf2 = Transaction::find($id);        
+        $updatexrf2 -> status = 'proceed';
+
+        $updatexrf2->save();
+        // $addinvoice2->save();
+
+        return redirect('/transaction');
+          
+    }
+    
 
     /**
      * Remove the specified resource from storage.

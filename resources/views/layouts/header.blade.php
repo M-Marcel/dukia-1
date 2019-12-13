@@ -216,6 +216,16 @@
                                 </li>                                
                             @endif
 
+                            @if (Auth::user()->role_id == '3')
+                            <li class="has-submenu">
+                                    
+                                <li class="has-submenu">
+                                    <li><a href="{{route('box')}}"><i class="mdi mdi-barcode-scan"></i>Box ID</a></li>
+                                    <li><a href="{{route('transaction')}}"><i class="fas fa-exchange-alt"></i>All Transaction</a></li>  
+                                    <li><a href="{{route('adminLog')}}"><i class="fas fa-user"></i> Users</a></li>                           
+                                </li>                                                      
+                            @endif
+
                             @if (Auth::user()->role_id == '4')
                             <li class="has-submenu">
                                     

@@ -273,7 +273,8 @@
                                             </div><!-- /.modal -->
                                         @endforeach 
                                         </tbody>
-                                </table>                               
+                                </table>
+                                {{ $data->links()}}                               
                             </div>
                         </div>
                     </div> <!-- end col -->

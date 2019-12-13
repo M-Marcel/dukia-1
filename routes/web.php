@@ -63,6 +63,10 @@ Route::get('/operator', 'buyer\buyerController@index')->name('buyer');
     Route::get('/invoice/{id}', 'buyer\transactionController@showinvoice')->name('invoice');
     Route::get('/printInvoice/{id}', 'buyer\transactionController@printInvoice')->name('printInvoice');
     Route::get('/userApproved/{id}', 'buyer\transactionController@userApproved')->name('userApproved');
+
+    Route::get('/payer1/{id}', 'buyer\transactionController@payer1')->name('payer1');
+    Route::get('/payer2/{id}', 'buyer\transactionController@payer2')->name('payer2');
+    Route::get('/payer3/{id}', 'buyer\transactionController@payer3')->name('payer3');
     
 
     //New box

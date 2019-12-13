@@ -29,8 +29,6 @@ class AuthenticateController extends Controller
             'password' => 'required|alpha_num|min:6|max:20',
             'phoneno' => 'required|min:11|max:11',
             'image' => 'required',
-            'bank_account' => 'required|min:10|max:10',
-            'bank_name' => 'required',
             'role' => 'required|min:4');
 
         $messages = array(
@@ -78,10 +76,10 @@ class AuthenticateController extends Controller
                 $input['last_name'] = ucfirst($input['last_name']);
                 $input['password'] = Hash::make($input['password']);
                 $input['image_path'] = 'storage/'.$genId.'.jpg';
-                $input['qrcode_path'] = 'https://magbodo.com/asset/pixfam-images/profile.jpg';
+                $input['qrcode_path'] = $input['image'];
                 $user = User::create($input);
 
-                $file_data= $request->input('image');
+                $file_data= $input['image'];
                 //generating unique file name;
                 $file_name = $genId.'.jpg';
                 @list($type, $file_data) = explode(';', $file_data);
@@ -156,8 +154,6 @@ class AuthenticateController extends Controller
                 'first_name'   => 'required|min:3|max:20',
                 'last_name'   => 'required|min:3|max:20',
                 'phoneno' => 'required|min:11|max:11',
-                'bank_account' => 'required|min:10|max:10',
-                'bank_name' => 'required',
                 'role' => 'required|min:4');
 
             $messages = array(

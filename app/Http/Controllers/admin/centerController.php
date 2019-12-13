@@ -28,8 +28,8 @@ class centerController extends Controller
             // case '2': return view('admin.index');
             // break;
 
-            case '3': return view('admin.index');
-            break;
+            // case '3': return view('admin.index');
+            // break;
 
             case '4': return view('operator.index');
             break;
@@ -59,13 +59,12 @@ class centerController extends Controller
             // break;
         }
 
-        $admin = Admin::orderBy('id')->select('admins.*')
-                                    // s
-                                    ->paginate();
+        $admin = Admin::orderBy('id')->select('admins.*')-get();
+                                   
         $center = new Location;
         $centers = $center::orderBy('id')                        
-                                    ->select('location.*')
-                                    ->paginate(8);
+                                    ->select('location.*')-get();
+                                    
                                     return view('admin.center', ['data'=> $centers, 'admi'=> $admin]);
        
     }

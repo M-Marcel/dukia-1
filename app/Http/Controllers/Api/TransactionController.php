@@ -22,6 +22,7 @@ class TransactionController extends Controller
             'box_id' => 'required|min:15|max:15',
             'location_id' => 'required',
             'user_id' => 'required|min:10|max:10',
+            'gps_location' => 'required',
             'user_weight' => 'required');
 
         $messages = array(
@@ -47,27 +48,28 @@ class TransactionController extends Controller
                     return response()->json(['status' => 0, 'message' => 'User ID does not exist']);
                 }
 
-                    $box = DB::table('box')->where('box_id', $input['box_id'])->get()->first();
-                    if(!$box){
+                    $box = DB::table('box')->where('box_id', $input['box_id'])->exists();;
+                    if($box){
                         return response()->json(['status' => 0, 'message' => 'Box id is invalid']);
                     }
 
-                    $boxu = DB::table('box')->where([['box_id','=', $input['box_id']], ['status','=', 'used']])->get()->first();
+                    $boxu = DB::table('box')->where([['box_id','=', $input['box_id']], ['status','=', 'used']])->exists();;
                     if($boxu){
                         return response()->json(['status' => 0, 'message' => 'Box id has been used']);
                     }
 
-                    $location = DB::table('box')->where('location_id', $input['location_id'])->get()->first();
+                    $location = DB::table('box')->where('location_id', $input['location_id'])->exists();;
                     if(!$location){
                         return response()->json(['status' => 0, 'message' => 'Location id is invalid']);
                     }
 
-                    $updateBox=DB::table('box')->where('box_id', $input['box_id'])->update(['status' => 'used']);
-
                 $input['transaction_id'] =$genId;
-                $input['date'] = date('Y-m-d');
-                $input['time'] = date('H:i:s');
+                $input['t_date'] = date('Y-m-d');
+                $input['t_time'] = date('H:i:s');
+
                 $newtransaction = Transaction::create($input);
+                $updateBox=DB::table('box')->where('box_id', $input['box_id'])->update(['status' => 'used', 'user_id' => $input['user_id']]);
+
 
                 DB::commit();
                 return response()->json(['status'=> 1, 'message' => "Transaction successfully logged for processing", 'transactionid'=>$newtransaction->transaction_id]);

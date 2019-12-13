@@ -63,6 +63,11 @@ class adminLogController extends Controller
             // break;
         }
 
+        $alluser = Admin::count();
+        $actuser = Admin::where('status','=','active')->count();
+        $sususer = Admin::where('status','=','suspended')->count();
+        $newuser = Admin::where('status','=','new')->count();
+
         $roles = Role::all();
         $locations = Location::all();
 
@@ -70,8 +75,8 @@ class adminLogController extends Controller
         $admins = $admin::orderBy('id')->join('role', 'admins.role_id','=','role.id')
                                     ->join('location', 'admins.location_id','=','location.id')                                    
                                     ->select('admins.*','role.role_name', 'location.location_name')
-                                    ->paginate();
-                                    return view('admin.adminLog', ['data'=> $admins, 'role'=> $roles, 'location'=> $locations]);
+                                    ->paginate(10);
+                                    return view('admin.adminLog', ['data'=> $admins, 'role'=> $roles, 'location'=> $locations, 'count1'=> $alluser, 'count2'=> $actuser, 'count3'=> $sususer, 'count4'=> $newuser]);
        
     }
 

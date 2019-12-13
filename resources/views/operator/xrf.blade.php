@@ -185,27 +185,53 @@
                                     <tr>
                                         <td>Payer 1</td>
                                         <td>
-                                            <span class="badge badge-pill badge-primary">{{$data[0]->payer1_status}}</span>  
+                                                @if ($data[0]->status == 'proceed')
+                                                
+                                                    @if (Auth::user()->role_id == '6' || Auth::user()->role_id == '3')
+                                                    <button type="button" id="datbtn" class="btn btn-primary btn-sm waves-effect waves-light"> <a href="{{ route('payer1', $data[0]->id)}}" style="color:beige;">Payer 1</a></button>
+                                                    @else
+                                                        
+                                                    @endif
+                                                        
+                                                    <span class="badge badge-pill badge-primary">{{$data[0]->payer1_status}}</span>  
+                                                
+                                                @endif                                           
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Payer 2</td>
                                         <td>
+                                            @if ($data[0]->payer2_status == 'confirmed')
+                                                
+                                                @if (Auth::user()->role_id == '12' || Auth::user()->role_id == '3')
+                                                <button type="button" id="datbtn" class="btn btn-primary btn-sm waves-effect waves-light"> <a href="{{ route('payer2', $data[0]->id)}}" style="color:beige;">Payer 2</a></button>
+                                                @else
+                                                    
+                                                @endif
                                             <span class="badge badge-pill badge-primary">{{$data[0]->payer2_status}}</span>
+                                                
+                                            @endif
+                                               
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Payer 3</td>
                                         <td>
-                                            <span class="badge badge-pill badge-primary">{{$data[0]->payer3_status}}</span>
+                                                @if ($data[0]->payer3_status == 'confirmed')
+                                                
+                                                    @if (Auth::user()->role_id == '13' || Auth::user()->role_id == '3')
+                                                    <button type="button" id="datbtn" class="btn btn-primary btn-sm waves-effect waves-light"> <a href="{{ route('payer3', $data[0]->id)}}" style="color:beige;">Payer 3</a></button>
+                                                    @else
+                                                        
+                                                    @endif
+                                                <span class="badge badge-pill badge-primary">{{$data[0]->payer3_status}}</span>
+                                                
+                                                @endif
+
+                                               
                                         </td>
                                     </tr>
-                                    <tr>
-                                            <td style="color:darkblue; font-size:20px">Invoice</td>
-                                            <td>
-                                                    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light"> <a href="" style="color:beige;"><i class="fas fa-user-edit"></i>Print Invoice</a></button> 
-                                            </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -213,8 +239,9 @@
                                     <tr>
                                             <td style="color:darkblue; font-size:20px"></td>
                                             <td>
-                                                    <button type="button" class="btn btn-info btn-sm waves-effect waves-light"> <a href="{{route('transaction')}}" style="color:beige;">Cloce Transaction</a></button> 
-                                            </td>
+                                                    <button type="button" class="btn btn-info btn-sm waves-effect waves-light"> <a href="{{route('transaction')}}" style="color:beige;">Complete Transaction</a></button> 
+                                                    <button type="button" class="btn btn-danger btn-sm waves-effect waves-light"> <a href="" style="color:beige;"><i class="fas fa-user-edit"></i>Terminater Transaction</a></button>
+                                                </td>
                                     </tr>
 
                                     </tbody>

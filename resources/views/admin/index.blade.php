@@ -4,18 +4,39 @@
 <link rel="stylesheet" href="{{ URL::asset('assets/plugins/morris/morris.css')}}">
 @endsection
 
-@section('breadcrumb')
-							<h4 class="page-title">Admin Dashboard</h4>
+@section('breadcrumb')							
+
+                            @if (Auth::user()->role_id == '1')
+                            <h4 class="page-title">Admin Dashboard</h4>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item active">
                                     Welcome to DuKia Admin Dashboard
                                 </li>
-                            </ol>
+                            </ol>                                                     
+                            @endif
+                             
+                            @if (Auth::user()->role_id == '2')
+                            <h4 class="page-title">C.O.O Dashboard</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active">
+                                    Welcome to DuKia Admin Dashboard
+                                </li>
+                            </ol>                                                      
+                            @endif
+
+                            @if (Auth::user()->role_id == '3')
+                            <<h4 class="page-title">C.F.O Dashboard</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active">
+                                    Welcome to DuKia Admin Dashboard
+                                </li>
+                            </ol>                                                      
+                            @endif
 @endsection
 
 @section('content')
             <div class="container-fluid">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-xl-3 col-md-6">
                         <div class="card mini-stat bg-primary">
                             <div class="card-body mini-stat-img">
@@ -74,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- end row -->
+                <!-- end row --> --}}
 
                 <div class="row">
 
